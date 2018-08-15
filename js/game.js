@@ -22,7 +22,9 @@ class Game {
   }
 
   createObjects() {
-    this.background = new Background('./images/background.png', this.canvas, this.ctx);
+    this.background1 = new Background('./images/background.png', this.canvas, this.ctx);
+    this.background2 = new Background('./images/background.png', this.canvas, this.ctx);
+    this.background2.x = this.canvas.width;
     // debugger
   }
 
@@ -95,13 +97,21 @@ class Game {
 
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
-    this.background.draw();
+    this.background1.draw();
+    this.background2.draw();
 
-    if(Math.abs(this.background.x) > this.canvas.width) {
-      this.background.x = this.canvas.width - this.velocity;
+    if(Math.abs(this.background1.x) > this.canvas.width) {
+      this.background1.x = this.canvas.width - this.velocity;
     }
 
-    this.background.x = this.background.x - this.velocity;
+    this.background1.x = this.background1.x - this.velocity;
+
+
+    if(Math.abs(this.background2.x) > this.canvas.width) {
+      this.background2.x = this.canvas.width - this.velocity;
+    }
+
+    this.background2.x = this.background2.x - this.velocity;
 
   }
 

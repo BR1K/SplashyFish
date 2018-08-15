@@ -23,7 +23,7 @@ class Background {
 
   draw() {
     if (this.img != null) {
-      debugger
+      // debugger
       this.ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
     }
   }
