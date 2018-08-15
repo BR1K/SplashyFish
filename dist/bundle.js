@@ -86,6 +86,55 @@
 /************************************************************************/
 /******/ ({
 
+/***/ "./js/Background.js":
+/*!**************************!*\
+  !*** ./js/Background.js ***!
+  \**************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+class Background {
+
+  constructor(src, canvas, ctx) {
+    this.canvas = canvas;
+    this.ctx = ctx;
+
+    this.x = 0;
+    this.y = 0;
+    this.height = this.canvas.height;
+    this.width = this.canvas.width;
+    this.src = src;
+    this.img = null
+
+    this.create.bind(this);
+    this.create();
+    this.draw.bind(this);
+  }
+
+  create() {
+    this.img = new Image();
+    this.img.src = this.src;
+  }
+
+  draw() {
+    if (this.img != null) {
+      debugger
+      this.ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
+    }
+  }
+
+
+
+
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (Background);
+
+
+/***/ }),
+
 /***/ "./js/Game.js":
 /*!********************!*\
   !*** ./js/Game.js ***!
@@ -95,32 +144,51 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _Background__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Background */ "./js/Background.js");
+
+
 class Game {
   constructor(canvas) {
     this.canvas = canvas;
     this.ctx = this.canvas.getContext('2d');
+
+    this.velocity = 5;
     this.currentState = 1;
     // console.log(this);
     this.startGame = this.startGame.bind(this);
     this.gameLoop = this.gameLoop.bind(this);
     this.drawStartScreen = this.drawStartScreen.bind(this);
+    this.drawPlayingScreen = this.drawPlayingScreen.bind(this);
     this.drawGameOverScreen = this.drawGameOverScreen.bind(this);
 
     this.bindEvents.bind(this);
     this.createObjects.bind(this);
+    // this.background.create();
     // this.bindEvents();
     // this.createObjects();
   }
 
   createObjects() {
-
+    this.background = new _Background__WEBPACK_IMPORTED_MODULE_0__["default"]('./images/background.png', this.canvas, this.ctx);
+    // debugger
   }
 
   bindEvents() {
-    debugger
+    // debugger
+    document.addEventListener('keydown', (event) => {
+      // debugger
+      switch (this.currentState) {
+        case 3:
+        if (event.code === "KeyR") {
+          this.currentState = 2;
+        }
+        break;
+      }
+    });
     document.addEventListener('click', (event) => {
       switch (this.currentState) {
         case 1:
+          console.log('hi');
           this.currentState = 2;
           break;
         case 2:
@@ -132,23 +200,13 @@ class Game {
       }
 
     });
-    document.addEventListener('keydown', (event) => {
-      debugger
-      switch (this.currentState) {
-        case 3:
-          if (event.code === "KeyR") {
-            this.currentState = 2;
-          }
-          break;
-      }
-    });
 
   }
 
   startGame() {
 
-    requestAnimationFrame(this.gameLoop);
-    // this.gameLoop();
+    // requestAnimationFrame(this.gameLoop);
+    this.gameLoop();
   }
 
   gameLoop() {
@@ -180,12 +238,17 @@ class Game {
   }
 
   drawPlayingScreen() {
-    this.ctx.fillStyle = 'black';
-    this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
+    // debugger
 
-    this.ctx.fillStyle = 'white';
-    this.ctx.font = '36px Arial';
-    this.ctx.fillText('PLAYING', this.canvas.width / 2 - 100, this.canvas.height / 2);
+    this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+
+    this.background.draw();
+
+    if(Math.abs(this.background.x) > this.canvas.width) {
+      this.background.x = this.canvas.width - this.velocity;
+    }
+
+    this.background.x = this.background.x - this.velocity;
 
   }
 
