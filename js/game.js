@@ -64,7 +64,7 @@ class Game {
           this.currentState = 2;
           break;
         case 2:
-
+          this.fish.vy = -1 * this.velocity;
           break;
         case 3:
 

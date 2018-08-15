@@ -179,6 +179,9 @@ class Fish {
       if (this.y + this.height > this.canvas.height) {
         this.y = this.canvas.height - this.height;
         this.vy = 0;
+      } else if (this.y < 0) {
+        this.y = 0;
+        this.vy = 0;
       }
 
       this.ctx.drawImage(this.img, this.frame * 256, 0, 256, 256, this.x, this.y, this.width, this.height);
@@ -275,7 +278,7 @@ class Game {
           this.currentState = 2;
           break;
         case 2:
-
+          this.fish.vy = -1 * this.velocity;
           break;
         case 3:
 
