@@ -25,8 +25,8 @@ class Game {
     this.reset = this.reset.bind(this);
 
 
-    this.bindEvents.bind(this);
-    this.createObjects.bind(this);
+    this.bindEvents = this.bindEvents.bind(this);
+    this.createObjects = this.createObjects.bind(this);
     // this.background.create();
     // this.bindEvents();
     // this.createObjects();
@@ -42,7 +42,6 @@ class Game {
     this.score.y = 80;
 
     this.obstacleGenerator = new ObstacleGenerator(this.canvas, this.ctx);
-    this.obstacleGenerator.generate();
 
     this.fish = new Fish('images/fish.png', this.canvas, this.ctx);
     // debugger
@@ -64,8 +63,8 @@ class Game {
     document.addEventListener('click', (event) => {
       switch (this.currentState) {
         case 1:
-          console.log('hi');
           this.currentState = 2;
+          this.obstacleGenerator.generate();
           break;
         case 2:
           this.fish.vy = -1 * this.velocity;
