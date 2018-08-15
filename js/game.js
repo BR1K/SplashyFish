@@ -1,5 +1,7 @@
 import Background from './Background';
 import Score from './Score';
+import ObstacleGenerator from './ObstacleGenerator';
+import Obstacle from './Obstacle';
 
 class Game {
   constructor(canvas) {
@@ -15,6 +17,7 @@ class Game {
     this.drawPlayingScreen = this.drawPlayingScreen.bind(this);
     this.drawGameOverScreen = this.drawGameOverScreen.bind(this);
     this.scrollBackground = this.scrollBackground.bind(this);
+    this.drawObstacles = this.drawObstacles.bind(this);
 
 
     this.bindEvents.bind(this);
@@ -32,6 +35,9 @@ class Game {
     this.score = new Score(this.canvas, this.ctx);
     this.score.x = this.canvas.width - 150;
     this.score.y = 80;
+
+    this.obstacleGenerator = new ObstacleGenerator(this.canvas, this.ctx);
+    this.obstacleGenerator.generate();
     // debugger
   }
 
@@ -101,12 +107,25 @@ class Game {
 
   drawPlayingScreen() {
     // debugger
-
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
     this.scrollBackground();
 
     this.score.draw();
+
+    this.drawObstacles();
+
+  }
+
+  drawObstacles() {
+
+    this.obstacles = this.obstacleGenerator.obstacles;
+
+    for (var i = 0; i < this.obstacles.length; i++) {
+      debugger
+      this.obstacles[i].draw();
+      this.obstacles[i].x -= this.velocity;
+    }
   }
 
   scrollBackground() {

@@ -7,9 +7,3 @@ window.requestAnimFrame = (function(){
          };
 })();
 // https://www.paulirish.com/2011/requestanimationframe-for-smart-animating/
-
-window.getRandomInt = function(min, max) {
-  min = Math.ceil(min);
-  max = Math.floor(max);
-  return Math.floor(Math.random() * (max - min)) + min;
-}

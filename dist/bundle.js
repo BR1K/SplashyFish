@@ -146,6 +146,10 @@ class Background {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Background__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Background */ "./js/Background.js");
 /* harmony import */ var _Score__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Score */ "./js/Score.js");
+/* harmony import */ var _ObstacleGenerator__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./ObstacleGenerator */ "./js/ObstacleGenerator.js");
+/* harmony import */ var _Obstacle__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Obstacle */ "./js/Obstacle.js");
+
+
 
 
 
@@ -163,6 +167,7 @@ class Game {
     this.drawPlayingScreen = this.drawPlayingScreen.bind(this);
     this.drawGameOverScreen = this.drawGameOverScreen.bind(this);
     this.scrollBackground = this.scrollBackground.bind(this);
+    this.drawObstacles = this.drawObstacles.bind(this);
 
 
     this.bindEvents.bind(this);
@@ -180,6 +185,9 @@ class Game {
     this.score = new _Score__WEBPACK_IMPORTED_MODULE_1__["default"](this.canvas, this.ctx);
     this.score.x = this.canvas.width - 150;
     this.score.y = 80;
+
+    this.obstacleGenerator = new _ObstacleGenerator__WEBPACK_IMPORTED_MODULE_2__["default"](this.canvas, this.ctx);
+    this.obstacleGenerator.generate();
     // debugger
   }
 
@@ -249,12 +257,25 @@ class Game {
 
   drawPlayingScreen() {
     // debugger
-
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
     this.scrollBackground();
 
     this.score.draw();
+
+    this.drawObstacles();
+
+  }
+
+  drawObstacles() {
+
+    this.obstacles = this.obstacleGenerator.obstacles;
+
+    for (var i = 0; i < this.obstacles.length; i++) {
+      debugger
+      this.obstacles[i].draw();
+      this.obstacles[i].x -= this.velocity;
+    }
   }
 
   scrollBackground() {
@@ -287,6 +308,112 @@ class Game {
 }
 
 /* harmony default export */ __webpack_exports__["default"] = (Game);
+
+
+/***/ }),
+
+/***/ "./js/Obstacle.js":
+/*!************************!*\
+  !*** ./js/Obstacle.js ***!
+  \************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+class Obstacle {
+  constructor(canvas, ctx) {
+    this.canvas = canvas;
+    this.ctx = ctx;
+
+    this.x = this.canvas.width;
+    this.y = 0;
+    this.width = 100;
+    this.height = 0;
+    this.space = 0;
+    this.color = this.getRandomColor();
+
+    this.draw = this.draw.bind(this);
+  }
+
+
+  draw() {
+    debugger
+    this.ctx.fillRect(this.x, this.y, this.width, this.height);
+
+    this.ctx.fillRect(this.x, this.height + this.space, this.width, this.canvas.height);
+
+  }
+
+  getRandomInt(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return (Math.floor(Math.random() * (max - min)) + min);
+  }
+
+  getRandomColor() {
+    const red = this.getRandomInt(0, 257);
+    const green = this.getRandomInt(0, 257);
+    const blue = this.getRandomInt(0, 257);
+    return "rgb('+r+','+g+','+b+')";
+  }
+
+
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (Obstacle);
+
+
+/***/ }),
+
+/***/ "./js/ObstacleGenerator.js":
+/*!*********************************!*\
+  !*** ./js/ObstacleGenerator.js ***!
+  \*********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _Obstacle__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Obstacle */ "./js/Obstacle.js");
+
+
+class ObstacleGenerator {
+  constructor(canvas, ctx) {
+    this.canvas = canvas;
+    this.ctx = ctx;
+
+    this.minSpace = 200;
+    this.maxSpace = 300;
+    this.frequency = 1500;
+    this.obstacles = [];
+
+    this.generate = this.generate.bind(this);
+  }
+
+  generate() {
+    setInterval(() => {
+      let space = this.getRandomInt(this.minSpace, this.maxSpace);
+      let height = this.getRandomInt(0, this.maxSpace);
+
+      let obstacle = new _Obstacle__WEBPACK_IMPORTED_MODULE_0__["default"](this.canvas, this.ctx);
+      obstacle.space = space;
+      obstacle.height = height;
+
+      this.obstacles.push(obstacle);
+
+    }, this.frequency);
+  }
+
+  getRandomInt(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return (Math.floor(Math.random() * (max - min)) + min);
+  }
+
+
+}
+/* harmony default export */ __webpack_exports__["default"] = (ObstacleGenerator);
 
 
 /***/ }),
@@ -346,6 +473,7 @@ window.onload = function() {
   splashyFish.startGame()
   splashyFish.bindEvents();
   splashyFish.createObjects();
+  // splashyFish.drawObstacles();
 };
 
 

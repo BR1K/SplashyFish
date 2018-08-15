@@ -7,4 +7,5 @@ window.onload = function() {
   splashyFish.startGame()
   splashyFish.bindEvents();
   splashyFish.createObjects();
+  // splashyFish.drawObstacles();
 };
