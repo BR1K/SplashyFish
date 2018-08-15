@@ -6,4 +6,5 @@ window.onload = function() {
   const splashyFish = new Game(canvas);
   splashyFish.startGame()
   splashyFish.bindEvents();
+  splashyFish.createObjects();
 };

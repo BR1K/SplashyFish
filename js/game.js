@@ -2,7 +2,7 @@ class Game {
   constructor(canvas) {
     this.canvas = canvas;
     this.ctx = this.canvas.getContext('2d');
-    this.currentState = 3;
+    this.currentState = 1;
     // console.log(this);
     this.startGame = this.startGame.bind(this);
     this.gameLoop = this.gameLoop.bind(this);
@@ -10,7 +10,13 @@ class Game {
     this.drawGameOverScreen = this.drawGameOverScreen.bind(this);
 
     this.bindEvents.bind(this);
+    this.createObjects.bind(this);
     // this.bindEvents();
+    // this.createObjects();
+  }
+
+  createObjects() {
+
   }
 
   bindEvents() {
