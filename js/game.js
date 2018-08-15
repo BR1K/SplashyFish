@@ -20,6 +20,7 @@ class Game {
     this.scrollBackground = this.scrollBackground.bind(this);
     this.drawObstacles = this.drawObstacles.bind(this);
     this.clearObstacles = this.clearObstacles.bind(this);
+    this.checkCollisions = this.checkCollisions.bind(this);
 
 
     this.bindEvents.bind(this);
@@ -121,9 +122,18 @@ class Game {
 
     this.fish.draw();
 
-    console.log(this.obstacleGenerator.obstacles);
+    this.checkCollisions();
 
+  }
 
+  checkCollisions() {
+    this.obstacles = this.obstacleGenerator.obstacles;
+
+    for (var i = 0; i < this.obstacles.length; i++) {
+      if () {
+        this.currentState = 3;
+      }
+    }
   }
 
   drawObstacles() {
