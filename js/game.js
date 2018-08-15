@@ -13,6 +13,8 @@ class Game {
     this.drawStartScreen = this.drawStartScreen.bind(this);
     this.drawPlayingScreen = this.drawPlayingScreen.bind(this);
     this.drawGameOverScreen = this.drawGameOverScreen.bind(this);
+    this.scrollBackground = this.scrollBackground.bind(this);
+
 
     this.bindEvents.bind(this);
     this.createObjects.bind(this);
@@ -97,20 +99,20 @@ class Game {
 
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
-    this.background1.draw();
-    this.background2.draw();
+    this.scrollBackground();
+  }
 
+  scrollBackground() {
+    this.background1.draw();
     if(Math.abs(this.background1.x) > this.canvas.width) {
       this.background1.x = this.canvas.width - this.velocity;
     }
-
     this.background1.x = this.background1.x - this.velocity;
 
-
+    this.background2.draw();
     if(Math.abs(this.background2.x) > this.canvas.width) {
       this.background2.x = this.canvas.width - this.velocity;
     }
-
     this.background2.x = this.background2.x - this.velocity;
 
   }
