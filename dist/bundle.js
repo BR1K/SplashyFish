@@ -145,6 +145,8 @@ class Background {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Background__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Background */ "./js/Background.js");
+/* harmony import */ var _Score__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Score */ "./js/Score.js");
+
 
 
 class Game {
@@ -174,6 +176,10 @@ class Game {
     this.background1 = new _Background__WEBPACK_IMPORTED_MODULE_0__["default"]('./images/background.png', this.canvas, this.ctx);
     this.background2 = new _Background__WEBPACK_IMPORTED_MODULE_0__["default"]('./images/background.png', this.canvas, this.ctx);
     this.background2.x = this.canvas.width;
+
+    this.score = new _Score__WEBPACK_IMPORTED_MODULE_1__["default"](this.canvas, this.ctx);
+    this.score.x = this.canvas.width - 150;
+    this.score.y = 80;
     // debugger
   }
 
@@ -247,6 +253,8 @@ class Game {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
     this.scrollBackground();
+
+    this.score.draw();
   }
 
   scrollBackground() {
@@ -279,6 +287,42 @@ class Game {
 }
 
 /* harmony default export */ __webpack_exports__["default"] = (Game);
+
+
+/***/ }),
+
+/***/ "./js/Score.js":
+/*!*********************!*\
+  !*** ./js/Score.js ***!
+  \*********************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+class Score{
+  constructor(canvas, ctx) {
+    this.canvas = canvas;
+    this.ctx = ctx;
+
+    this.start = new Date();
+    this.currentScore = 0;
+    this.x = 0;
+    this.y = 0;
+
+    this.draw = this.draw.bind(this);
+  }
+
+  draw() {
+    const draw = new Date();
+    this.score = parseFloat((draw - this.start) / 1000).toFixed(1);
+
+    this.ctx.font = '45px Verdana';
+    this.ctx.fillText(this.score, this.x, this.y)
+  }
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (Score);
 
 
 /***/ }),

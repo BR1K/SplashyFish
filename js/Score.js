@@ -12,6 +12,12 @@ class Score{
   }
 
   draw() {
+    const draw = new Date();
+    this.score = parseFloat((draw - this.start) / 1000).toFixed(1);
 
+    this.ctx.font = '45px Verdana';
+    this.ctx.fillText(this.score, this.x, this.y)
   }
 }
+
+export default Score;

@@ -1,4 +1,5 @@
 import Background from './Background';
+import Score from './Score';
 
 class Game {
   constructor(canvas) {
@@ -27,6 +28,10 @@ class Game {
     this.background1 = new Background('./images/background.png', this.canvas, this.ctx);
     this.background2 = new Background('./images/background.png', this.canvas, this.ctx);
     this.background2.x = this.canvas.width;
+
+    this.score = new Score(this.canvas, this.ctx);
+    this.score.x = this.canvas.width - 150;
+    this.score.y = 80;
     // debugger
   }
 
@@ -100,6 +105,8 @@ class Game {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
     this.scrollBackground();
+
+    this.score.draw();
   }
 
   scrollBackground() {
