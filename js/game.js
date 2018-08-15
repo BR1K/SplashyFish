@@ -21,6 +21,7 @@ class Game {
     this.drawObstacles = this.drawObstacles.bind(this);
     this.clearObstacles = this.clearObstacles.bind(this);
     this.checkCollisions = this.checkCollisions.bind(this);
+    this.colliding = this.colliding.bind(this);
 
 
     this.bindEvents.bind(this);
@@ -130,10 +131,32 @@ class Game {
     this.obstacles = this.obstacleGenerator.obstacles;
 
     for (var i = 0; i < this.obstacles.length; i++) {
-      if () {
+      if (this.colliding(this.fish, this.obstacles[i])) {
         this.currentState = 3;
       }
     }
+  }
+
+  colliding(fish, obstacle) {
+    let colliding = true;
+
+    const fishTop = fish.y;
+    const fishBot = fish.y + fish.height;
+    const fishRight = fish.x + fish.width;
+    const fishLeft = fish.x;
+
+    const obstacleTop = obstacle.y + obstacle.space + obstacle.height;
+    const obstacleBot = obstacle.y + obstacle.height;
+    const obstacleRight = obstacle.x + obstacle.width;
+    const obstacleLeft = obstacle.x;
+
+    if ((fishBot < obstacleTop && fishTop > obstacleBot)
+      || (fishLeft > obstacleRight)
+      || (fishRight < obstacleLeft)) {
+      colliding = false;
+    }
+
+    return colliding;
   }
 
   drawObstacles() {
