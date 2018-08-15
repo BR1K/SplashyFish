@@ -135,6 +135,66 @@ class Background {
 
 /***/ }),
 
+/***/ "./js/Fish.js":
+/*!********************!*\
+  !*** ./js/Fish.js ***!
+  \********************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+class Fish {
+  constructor(src, canvas, ctx) {
+    this.canvas = canvas;
+    this.ctx = ctx;
+
+    this.x = 115;
+    this.y = 115;
+    this.width = 115;
+    this.height = 115;
+
+    this.vy = 0;
+    this.g = 0.20;
+
+    this.src = src;
+    this.img = null;
+    this.frame = 0;
+
+    this.create = this.create.bind(this);
+    this.create();
+
+  }
+
+  create() {
+    this.img = new Image();
+    this.img.src = this.src;
+  }
+
+  draw() {
+    if (this.img != null) {
+      this.vy += this.g;
+      this.y += this.vy
+
+      if (this.y + this.height > this.canvas.height) {
+        this.y = this.canvas.height - this.height;
+        this.vy = 0;
+      }
+
+      this.ctx.drawImage(this.img, this.frame * 256, 0, 256, 256, this.x, this.y, this.width, this.height);
+      this.frame++;
+      this.frame %= 6
+      debugger
+    }
+  }
+
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (Fish);
+
+
+/***/ }),
+
 /***/ "./js/Game.js":
 /*!********************!*\
   !*** ./js/Game.js ***!
@@ -148,6 +208,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Score__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Score */ "./js/Score.js");
 /* harmony import */ var _ObstacleGenerator__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./ObstacleGenerator */ "./js/ObstacleGenerator.js");
 /* harmony import */ var _Obstacle__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Obstacle */ "./js/Obstacle.js");
+/* harmony import */ var _Fish__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Fish */ "./js/Fish.js");
+
 
 
 
@@ -189,6 +251,8 @@ class Game {
 
     this.obstacleGenerator = new _ObstacleGenerator__WEBPACK_IMPORTED_MODULE_2__["default"](this.canvas, this.ctx);
     this.obstacleGenerator.generate();
+
+    this.fish = new _Fish__WEBPACK_IMPORTED_MODULE_4__["default"]('images/fish.png', this.canvas, this.ctx);
     // debugger
   }
 
@@ -265,6 +329,8 @@ class Game {
     this.score.draw();
 
     this.drawObstacles();
+
+    this.fish.draw();
 
     console.log(this.obstacleGenerator.obstacles);
 

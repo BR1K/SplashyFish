@@ -2,6 +2,7 @@ import Background from './Background';
 import Score from './Score';
 import ObstacleGenerator from './ObstacleGenerator';
 import Obstacle from './Obstacle';
+import Fish from './Fish';
 
 class Game {
   constructor(canvas) {
@@ -39,6 +40,8 @@ class Game {
 
     this.obstacleGenerator = new ObstacleGenerator(this.canvas, this.ctx);
     this.obstacleGenerator.generate();
+
+    this.fish = new Fish('images/fish.png', this.canvas, this.ctx);
     // debugger
   }
 
@@ -115,6 +118,8 @@ class Game {
     this.score.draw();
 
     this.drawObstacles();
+
+    this.fish.draw();
 
     console.log(this.obstacleGenerator.obstacles);
 
