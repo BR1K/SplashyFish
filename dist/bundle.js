@@ -168,6 +168,7 @@ class Game {
     this.drawGameOverScreen = this.drawGameOverScreen.bind(this);
     this.scrollBackground = this.scrollBackground.bind(this);
     this.drawObstacles = this.drawObstacles.bind(this);
+    this.clearObstacles = this.clearObstacles.bind(this);
 
 
     this.bindEvents.bind(this);
@@ -265,16 +266,31 @@ class Game {
 
     this.drawObstacles();
 
+    console.log(this.obstacleGenerator.obstacles);
+
+
   }
 
   drawObstacles() {
 
     this.obstacles = this.obstacleGenerator.obstacles;
 
-    for (var i = 0; i < this.obstacles.length; i++) {
+    for (let i = 0; i < this.obstacles.length; i++) {
       debugger
       this.obstacles[i].draw();
       this.obstacles[i].x -= this.velocity;
+    }
+
+    this.clearObstacles();
+  }
+
+  clearObstacles() {
+    this.obstacles = this.obstacleGenerator.obstacles;
+
+    for (let i = 0; i < this.obstacles.length; i++) {
+      if (this.obstacles[i].x + this.obstacles[i].width < 0) {
+        this.obstacles.shift();
+      }
     }
   }
 
