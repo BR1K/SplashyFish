@@ -1,0 +1,27 @@
+{
+  "name": "splashy-fish",
+  "version": "1.0.0",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "webpack": "webpack --mode=development --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BR1K/SplashyFish.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/BR1K/SplashyFish/issues"
+  },
+  "homepage": "https://github.com/BR1K/SplashyFish#readme",
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.5",
+    "webpack": "^4.16.5",
+    "webpack-cli": "^3.1.0"
+  },
+  "keywords": [],
+  "description": ""
+}
