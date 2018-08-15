@@ -111,7 +111,7 @@ class Game {
   }
 
   bindEvents() {
-    // debugger;
+    debugger
     document.addEventListener('click', (event) => {
       switch (this.currentState) {
         case 1:
@@ -127,14 +127,16 @@ class Game {
 
     });
     document.addEventListener('keydown', (event) => {
-      switch (game.currentState) {
+      debugger
+      switch (this.currentState) {
         case 3:
-          if (event.keyCode === 82)
+          if (event.code === "KeyR") {
+            this.currentState = 2;
+          }
           break;
-        default:
-
       }
     });
+
   }
 
   startGame() {
