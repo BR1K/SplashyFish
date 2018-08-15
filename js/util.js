@@ -13,12 +13,3 @@ window.getRandomInt = function(min, max) {
   max = Math.floor(max);
   return Math.floor(Math.random() * (max - min)) + min;
 }
-
-// mozilla
-
-window.getRandomColor = function() {
-  const red = getRandomInt(0, 257);
-  const green = getRandomInt(0, 257);
-  const blue = getRandomInt(0, 257);
-  return "rgb('+r+','+g+','+b+')";
-};
