@@ -22,6 +22,7 @@ class Game {
     this.clearObstacles = this.clearObstacles.bind(this);
     this.checkCollisions = this.checkCollisions.bind(this);
     this.colliding = this.colliding.bind(this);
+    this.reset = this.reset.bind(this);
 
 
     this.bindEvents.bind(this);
@@ -54,6 +55,7 @@ class Game {
       switch (this.currentState) {
         case 3:
         if (event.code === "KeyR") {
+          this.reset();
           this.currentState = 2;
         }
         break;
@@ -75,6 +77,14 @@ class Game {
 
     });
 
+  }
+
+  reset() {
+    this.score.start = new Date();
+    this.score.currentScore = 0;
+    this.obstacleGenerator.obstacles = [];
+    this.fish.x = 115;
+    this.fish.y = 115;
   }
 
   startGame() {
