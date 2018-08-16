@@ -41,7 +41,7 @@ class Game {
     this.score.x = this.canvas.width - 150;
     this.score.y = 80;
 
-    this.obstacleGenerator = new ObstacleGenerator(this.canvas, this.ctx);
+    this.obstacleGenerator = new ObstacleGenerator(this.canvas, this.ctx, './images/mine.png');
 
     this.fish = new Fish('images/fish.png', this.canvas, this.ctx);
     // debugger

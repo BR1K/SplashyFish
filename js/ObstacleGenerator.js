@@ -1,9 +1,11 @@
 import Obstacle from './Obstacle';
 
 class ObstacleGenerator {
-  constructor(canvas, ctx) {
+  constructor(canvas, ctx, src) {
     this.canvas = canvas;
     this.ctx = ctx;
+
+    this.src = src;
 
     this.minSpace = 200;
     this.maxSpace = 300;
@@ -18,7 +20,7 @@ class ObstacleGenerator {
       let space = this.getRandomInt(this.minSpace, this.maxSpace);
       let height = this.getRandomInt(0, this.maxSpace);
 
-      let obstacle = new Obstacle(this.canvas, this.ctx);
+      let obstacle = new Obstacle(this.canvas, this.ctx, this.src);
       obstacle.space = space;
       obstacle.height = height;
 
