@@ -6,7 +6,7 @@ class Fish {
     this.x = 115;
     this.y = 115;
     this.width = 115;
-    this.height = 115;
+    this.height = 90;
 
     this.vy = 0;
     this.g = 0.20;
@@ -38,10 +38,10 @@ class Fish {
         this.vy = 0;
       }
 
-      this.ctx.drawImage(this.img, this.frame * 256, 0, 256, 256, this.x, this.y, this.width, this.height);
+      this.ctx.drawImage(this.img, this.frame * 256, 0, 256, 175, this.x, this.y, this.width, this.height);
       this.frame++;
       this.frame %= 6
-      debugger
+      // debugger
     }
   }
 

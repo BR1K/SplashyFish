@@ -43,7 +43,7 @@ class Game {
 
     this.obstacleGenerator = new ObstacleGenerator(this.canvas, this.ctx, './images/mine.png');
 
-    this.fish = new Fish('images/fish.png', this.canvas, this.ctx);
+    this.fish = new Fish('images/fish2.png', this.canvas, this.ctx);
     // debugger
   }
 
@@ -141,6 +141,7 @@ class Game {
 
     for (var i = 0; i < this.obstacles.length; i++) {
       if (this.colliding(this.fish, this.obstacles[i])) {
+        debugger
         this.currentState = 3;
       }
     }
@@ -161,7 +162,7 @@ class Game {
 
     if ((fishBot < obstacleTop && fishTop > obstacleBot)
       || (fishLeft > obstacleRight)
-      || (fishRight < obstacleLeft)) {
+      || (fishRight < obstacleLeft + 20)) {
       colliding = false;
     }
 
@@ -173,7 +174,7 @@ class Game {
     this.obstacles = this.obstacleGenerator.obstacles;
 
     for (let i = 0; i < this.obstacles.length; i++) {
-      debugger
+      // debugger
       this.obstacles[i].draw();
       this.obstacles[i].x -= this.velocity;
     }

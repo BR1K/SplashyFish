@@ -152,7 +152,7 @@ class Fish {
     this.x = 115;
     this.y = 115;
     this.width = 115;
-    this.height = 115;
+    this.height = 90;
 
     this.vy = 0;
     this.g = 0.20;
@@ -184,10 +184,10 @@ class Fish {
         this.vy = 0;
       }
 
-      this.ctx.drawImage(this.img, this.frame * 256, 0, 256, 256, this.x, this.y, this.width, this.height);
+      this.ctx.drawImage(this.img, this.frame * 256, 0, 256, 175, this.x, this.y, this.width, this.height);
       this.frame++;
       this.frame %= 6
-      debugger
+      // debugger
     }
   }
 
@@ -257,7 +257,7 @@ class Game {
 
     this.obstacleGenerator = new _ObstacleGenerator__WEBPACK_IMPORTED_MODULE_2__["default"](this.canvas, this.ctx, './images/mine.png');
 
-    this.fish = new _Fish__WEBPACK_IMPORTED_MODULE_4__["default"]('images/fish.png', this.canvas, this.ctx);
+    this.fish = new _Fish__WEBPACK_IMPORTED_MODULE_4__["default"]('images/fish2.png', this.canvas, this.ctx);
     // debugger
   }
 
@@ -355,6 +355,7 @@ class Game {
 
     for (var i = 0; i < this.obstacles.length; i++) {
       if (this.colliding(this.fish, this.obstacles[i])) {
+        debugger
         this.currentState = 3;
       }
     }
@@ -375,7 +376,7 @@ class Game {
 
     if ((fishBot < obstacleTop && fishTop > obstacleBot)
       || (fishLeft > obstacleRight)
-      || (fishRight < obstacleLeft)) {
+      || (fishRight < obstacleLeft + 20)) {
       colliding = false;
     }
 
@@ -387,7 +388,7 @@ class Game {
     this.obstacles = this.obstacleGenerator.obstacles;
 
     for (let i = 0; i < this.obstacles.length; i++) {
-      debugger
+      // debugger
       this.obstacles[i].draw();
       this.obstacles[i].x -= this.velocity;
     }
@@ -486,7 +487,7 @@ class Obstacle {
       this.ctx.fillStyle = this.color;
       this.ctx.fillRect(this.x, this.y, this.width, this.height);
       // this.ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
-      this.ctx.drawImage(this.img, this.x, this.height + this.space, this.width, this.canvas.height);
+      this.ctx.drawImage(this.img, this.x, this.height + this.space - 40, this.width, this.canvas.height);
     }
     // this.ctx.fillStyle = this.color;
     //
@@ -508,7 +509,7 @@ class Obstacle {
     const green = this.getRandomInt(0, 257);
     const blue = this.getRandomInt(0, 257);
     return `rgb(${red}, ${green}, ${blue})`;
-    debugger
+    // debugger
   }
 
 
