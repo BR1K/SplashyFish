@@ -330,7 +330,9 @@ class Game {
 
     this.ctx.fillStyle = 'white';
     this.ctx.font = '36px Arial';
-    this.ctx.fillText('START', this.canvas.width / 2 - 100, this.canvas.height / 2);
+    this.ctx.fillText('Click the mouse to help the fish swim!', this.canvas.width / 2 - 400, this.canvas.height / 3);
+    this.ctx.fillText('Try to go as far as possible without crashing', this.canvas.width / 2 - 400, this.canvas.height / 3 + 100);
+    this.ctx.fillText('Click to Start', this.canvas.width / 2 - 100, this.canvas.height / 3 + 300);
 
   }
 
