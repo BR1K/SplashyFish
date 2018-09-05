@@ -5,3 +5,17 @@
   height: 600;
   margin: 0 auto;
 }
+
+.game-page {
+  display: flex;
+  flex-direction: column;
+}
+
+.title {
+  margin: 0 auto;
+}
+
+.links-container {
+  margin: 0 auto;
+  display: flex;
+}
