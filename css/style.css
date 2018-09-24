@@ -1,3 +1,7 @@
+body {
+  font-family: DIN Pro,-apple-system,BlinkMacSystemFont,sans-serif;
+}
+
 ol, ul {
  list-style: none;
 }
@@ -28,4 +32,8 @@ ol, ul {
 
 .link {
   margin: 0 50px;
+}
+
+.made-by {
+  align-self: center;
 }
