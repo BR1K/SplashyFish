@@ -1,5 +1,6 @@
 body {
   font-family: DIN Pro,-apple-system,BlinkMacSystemFont,sans-serif;
+  background-image: url(https://res.cloudinary.com/fullstackimages/image/upload/v1537754928/SplashyFish/background.png);
 }
 
 ol, ul {
