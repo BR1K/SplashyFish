@@ -1,1 +1,1 @@
-![Alt Text](https://i.imgur.com/8OFfirX.gif)
++<img src="/splashyfishgif2.gif?raw=true" width="200px">
