@@ -27,20 +27,11 @@ class Obstacle {
 
 
   draw() {
-    // debugger
     if (this.img != null) {
-      // debugger
       this.ctx.fillStyle = this.color;
       this.ctx.fillRect(this.x, this.y, this.width, this.height);
-      // this.ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
       this.ctx.drawImage(this.img, this.x, this.height + this.space - 40, this.width, this.canvas.height);
     }
-    // this.ctx.fillStyle = this.color;
-    //
-    // this.ctx.fillRect(this.x, this.y, this.width, this.height);
-    //
-    // this.ctx.fillRect(this.x, this.height + this.space, this.width, this.canvas.height);
-
   }
 
   getRandomInt(min, max) {
@@ -50,12 +41,10 @@ class Obstacle {
   }
 
   getRandomColor() {
-    // debugger
     const red = this.getRandomInt(0, 257);
     const green = this.getRandomInt(0, 257);
     const blue = this.getRandomInt(0, 257);
     return `rgb(${red}, ${green}, ${blue})`;
-    // debugger
   }
 
 

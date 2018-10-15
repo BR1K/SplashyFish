@@ -48,9 +48,7 @@ class Game {
   }
 
   bindEvents() {
-    // debugger
     document.addEventListener('keydown', (event) => {
-      // debugger
       switch (this.currentState) {
         case 3:
         if (event.code === "KeyR") {
@@ -70,7 +68,6 @@ class Game {
           this.fish.vy = -1 * this.velocity;
           break;
         case 3:
-
           break;
       }
 
@@ -123,19 +120,12 @@ class Game {
   }
 
   drawPlayingScreen() {
-    // debugger
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-
     this.scrollBackground();
-
     this.score.draw();
-
     this.drawObstacles();
-
     this.fish.draw();
-
     this.checkCollisions();
-
   }
 
   checkCollisions() {
@@ -172,11 +162,9 @@ class Game {
   }
 
   drawObstacles() {
-
     this.obstacles = this.obstacleGenerator.obstacles;
 
     for (let i = 0; i < this.obstacles.length; i++) {
-      // debugger
       this.obstacles[i].draw();
       this.obstacles[i].x -= this.velocity;
     }
