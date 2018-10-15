@@ -16,6 +16,7 @@ Try to survive without [crashing](#collision-detection) into any obstacles for a
 
 #### Random Obstacle Generator
 The `Obstacle Generator` class uses Javascript's built in `getRandomInt` function to randomly determine the obstacles' distance from each other, as well as their sizes:
+
 ```Javascript
 import Obstacle from './Obstacle';
 
@@ -61,7 +62,7 @@ export default ObstacleGenerator;
 
 The generator takes in `Obstacle` objects and collects them into an array, which then render on the screen when the `drawObstacles` function is invoked in the `drawPlayingScreen` function in the `Game` class:
 
-```
+```Javascript
   drawPlayingScreen() {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
     this.scrollBackground();
@@ -72,7 +73,7 @@ The generator takes in `Obstacle` objects and collects them into an array, which
   }
 ```
 This function then calls the `drawObstacles` helper function, which uses a `for loop` to draw each one:
-```
+```JavaScript
   drawObstacles() {
     this.obstacles = this.obstacleGenerator.obstacles;
 
