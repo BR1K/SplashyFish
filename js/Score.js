@@ -1,4 +1,4 @@
-class Score{
+class Score {
   constructor(canvas, ctx) {
     this.canvas = canvas;
     this.ctx = ctx;

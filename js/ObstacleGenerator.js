@@ -4,7 +4,6 @@ class ObstacleGenerator {
   constructor(canvas, ctx, src) {
     this.canvas = canvas;
     this.ctx = ctx;
-
     this.src = src;
 
     this.minSpace = 200;
@@ -32,9 +31,11 @@ class ObstacleGenerator {
   getRandomInt(min, max) {
     min = Math.ceil(min);
     max = Math.floor(max);
+
     return (Math.floor(Math.random() * (max - min)) + min);
   }
 
 
 }
+
 export default ObstacleGenerator;
