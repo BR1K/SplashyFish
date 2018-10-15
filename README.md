@@ -1,18 +1,18 @@
 # Splashy Fish
 
 
-## [DEMO](www.brikend.com/SplashyFish)
+## [DEMO](http://www.brikend.com/SplashyFish)
 <img src="/splashyfishgif2.gif?raw=true" width="1000px">
 
 
 #### Splashy Fish is a simple JavaScript & HTML5 Canvas browser game inspired by Flappy Bird.
 
-### Instructions
+## Instructions
 Try to survive without [crashing](#collision-detection) into any obstacles for as long as possible! The obstacles are [randomly generated](#random-obstacle-generator), so be be prepared to dodge them.
 
 [Click the mouse](#event-listener) to swim. Each click will cause you to bounce upward, and gravity will bring you back down. Be sure to time your clicks so that you swim in between the obstacles!
 
-### Code Samples
+## Code Samples
 
 #### Random Obstacle Generator
 The `Obstacle Generator` class uses Javascript's built in `getRandomInt` function to randomly determine the obstacles' distance from each other, as well as their sizes:
